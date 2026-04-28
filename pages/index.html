@@ -1,154 +1,194 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Krig er forakt for liv | Underskriftskampanje</title>
+    <title>Krig er forakt for liv</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --accent: #E11D48; /* Aggressive protest red */
-            --bg: #FDFBF7;      /* Recycled paper off-white */
-        }
 
-        * { box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap');
 
-        body {
-            font-family: 'Impact', 'Arial Black', sans-serif; /* Thick, heavy fonts */
-            line-height: 1.2;
-            color: var(--black);
-            background-color: var(--bg);
-            margin: 0;
-            text-transform: uppercase; /* Makes it feel more like a demand */
-        }
-
-        /* Helpers */
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
-
-        /* Hero */
-        .hero { 
-            background-color: var(--black); 
-            color: var(--white); 
-            padding: 5rem 1rem; 
-            text-align: center; 
-            border-bottom: 8px solid var(--accent);
-        }
-        .hero h1 { font-size: 4rem; margin-bottom: 1rem; letter-spacing: -2px; }
-        .counter { 
-            font-size: 2rem; 
-            color: var(--accent); 
-            display: block; 
-            margin-top: 1rem; 
-            border: 4px solid var(--accent);
-            padding: 1rem;
-            display: inline-block;
-        }
-
-
-				.main-section {
-						background-image: url("https://su.no/wp-content/uploads/2023/06/20230501132527_2Y5A5451-2048x1365.jpg");
-            padding: 2rem 0;
-				}
-
-        /* Main Grid */
-        .main-content {
-					margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 2rem;
-            max-width: 1000px;
-            padding: 0 1rem;
-            align-items: start;
-        }
-
-        /* Brutalist Cards */
-        .left-col, .form-card { 
-            background: var(--white); 
-            padding: 2rem; 
-            border: 4px solid var(--black);
-            box-shadow: 10px 10px 0px var(--black); /* Hard drop shadow */
-        }
-
-        .right-col { position: sticky; top: 2rem; }
-
-        /* Form styling */
-        form { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
-        label { font-weight: 900; font-size: 1.2rem; }
-        input { 
-            padding: 1rem; 
-            border: 3px solid var(--black); 
-            width: 100%; 
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
+    :root {
+        --black: #000000;
+        --white: #ffffff;
+        --accent: #E11D48;
+        --bg: #FDFBF7;
         
-        button { 
-            padding: 1rem; 
-            background-color: var(--accent); 
-            color: var(--white); 
-            border: 4px solid var(--black); 
-            font-weight: 900; 
-            font-size: 1.5rem;
-            cursor: pointer; 
-            margin-top: 1rem;
-        }
-        button:hover { background-color: var(--black); color: var(--white); }
+        /* Font Stacks */
+        --font-display: 'Bebas Neue', sans-serif;
+        --font-body: 'Inter', sans-serif;
+        
+        /* Effects */
+        --shadow: 10px 10px 0px var(--black);
+    }
 
-        /* Footer/About */
-        .section-about { padding: 4rem 1rem; border-top: 4px solid var(--black); }
-        footer { padding: 2rem 1rem; text-align: center; font-weight: 900; }
-        .form-details { margin-top: 2rem; font-size: 0.8rem; font-family: sans-serif; text-transform: none; }
+    * { box-sizing: border-box; }
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            .main-content { grid-template-columns: 1fr; }
-            .right-col { position: static; }
-            .hero h1 { font-size: 2.5rem; }
-        }
-    </style>
+    body {
+        font-family: var(--font-body);
+        line-height: 1.6;
+        color: var(--black);
+        background-color: var(--bg);
+        margin: 0;
+    }
+
+    /* Typography */
+    h1, h2, button, .counter, .hero h1 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+    }
+
+    /* Helpers */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Hero */
+    .hero { 
+        background-color: var(--black); 
+        color: var(--white); 
+        padding: 5rem 1rem; 
+        text-align: center; 
+        border-bottom: 8px solid var(--accent);
+    }
+    .hero h1 { font-size: 4rem; margin-bottom: 1rem; letter-spacing: -2px; }
+    .hero p { font-size: 1.5rem; text-transform: none; }
+    
+    .counter { 
+        font-size: 2rem; 
+        color: var(--accent); 
+        display: inline-block;
+        margin-top: 1rem; 
+        border: 4px solid var(--accent);
+        padding: 1rem;
+    }
+
+    /* Main Section with Overlay */
+    .main-section {
+        position: relative;
+        background-image: linear-gradient(rgba(253, 251, 247, 0.8), rgba(253, 251, 247, 0.8)), 
+                          url("https://su.no/wp-content/uploads/2023/06/20230501132527_2Y5A5451-2048x1365.jpg");
+        background-size: cover;
+        background-position: center;
+        padding: 3rem 0;
+    }
+
+    /* Main Grid */
+    .main-content {
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        gap: 2rem;
+        max-width: 1000px;
+        padding: 0 1rem;
+        align-items: start;
+    }
+
+    /* Brutalist Cards */
+    .left-col, .form-card { 
+        background: var(--white); 
+        padding: 2rem; 
+        border: 4px solid var(--black);
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease;
+    }
+
+    .right-col { position: sticky; top: 2rem; }
+
+    /* Form styling */
+    form { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+    label { font-weight: 900; font-size: 1.2rem; }
+    input { 
+        padding: 1rem; 
+        border: 3px solid var(--black); 
+        width: 100%; 
+        font-size: 1.2rem;
+        font-weight: bold;
+        font-family: var(--font-body);
+    }
+    
+    input:focus, button:focus {
+        outline: 4px solid var(--accent);
+        outline-offset: 2px;
+    }
+    
+    button { 
+        padding: 1rem; 
+        background-color: var(--accent); 
+        color: var(--white); 
+        border: 4px solid var(--black); 
+        font-size: 1.5rem;
+        cursor: pointer; 
+        margin-top: 1rem;
+        transition: transform 0.1s ease, background-color 0.2s ease;
+    }
+    button:hover { 
+        background-color: var(--black); 
+        color: var(--white);
+        transform: translate(2px, 2px);
+        box-shadow: 4px 4px 0px var(--black);
+    }
+
+    /* Footer/About */
+    .section-about { padding: 4rem 1rem; border-top: 4px solid var(--black); }
+    footer { 
+        padding: 2rem 1rem; 
+        text-align: center; 
+        font-weight: 900; 
+        font-family: var(--font-display); 
+    }
+    .form-details { margin-top: 2rem; font-size: 0.8rem; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .main-content { grid-template-columns: 1fr; }
+        .right-col { position: static; }
+        .hero h1 { font-size: 2.5rem; }
+        input { margin-bottom: 0.5rem; }
+        .form-card { margin-top: 2rem; }
+    }
+
+       </style>
 </head>
 <body>
 
     <section class="hero">
         <div class="container">
             <h1>Krig er forakt for liv</h1>
-            <p style="font-family: sans-serif; font-size: 1.5rem; text-transform: none;">Ingen regjering burde kunne gå i krig uten et flertall på Stortinget</p>
+            <p>Ingen regjering burde kunne gå i krig uten et flertall på Stortinget</p>
             <span class="counter"><strong>{{.Count}}</strong> HAR ALLEREDE SIGNERT</span>
         </div>
     </section>
 
-		<section class="main-section">
-    <main class="main-content">
-        <article class="left-col">
-            <h2>Bakgrunn</h2>
-            <p style="font-family: sans-serif; text-transform: none;">I en urolig verden trenger vi noen felles spilleregler. I dag er det kun regjeringen som bestemmer om Norge skal eller ikke skal delta i krig i utlandet, uansett om de har flertall på Stortinget eller ikke.</p>
-            <p style="font-family: sans-serif; text-transform: none;">Beslutningen om å delta i krig burde ikke ligge i hendene til et fåtall personer. Den burde ligge hos nasjonalforsamlingen.</p>
-            <h2>Bli med på markering</h2>
-            <p style="font-family: sans-serif; text-transform: none;">Den 13. mai kl. 16:15 skal vi markere vårt krav på Eidsvolls plass. Bli med!</p>
-            <a href="https://facebook.com" style="color: var(--accent); font-weight: 900;">SE ARRANGEMENT PÅ FACEBOOK</a>
-        </article>
+    <section class="main-section">
+        <main class="main-content">
+            <article class="left-col">
+                <h2>Bakgrunn</h2>
+                <p>I en urolig verden trenger vi noen felles spilleregler. I dag er det kun regjeringen som bestemmer om Norge skal eller ikke skal delta i krig i utlandet, uansett om de har flertall på Stortinget eller ikke.</p>
+                <p>Beslutningen om å delta i krig burde ikke ligge i hendene til et fåtall personer. Den burde ligge hos nasjonalforsamlingen.</p>
+                <h2>Bli med på markering</h2>
+                <p>Den 13. mai kl. 16:15 skal vi markere vårt krav på Eidsvolls plass. Bli med!</p>
+                <a href="https://facebook.com" style="color: var(--accent); font-weight: 900;">SE ARRANGEMENT PÅ FACEBOOK</a>
+            </article>
 
-        <aside class="right-col">
-            <div class="form-card">
-                <h2>Signer</h2>
-                <form action="/sign" method="POST">
-                    {{if .Error}}<p style="color:var(--accent); font-weight:bold;">{{.Error}}</p>{{end}}
-                    <label for="name">Navn</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="email">Epost</label>
-                    <input type="email" id="email" name="email">
-                    <button type="submit">SIGNER NÅ</button>
-                </form>
-                <details class="form-details">
-                    <summary>PERSONOPPLYSNINGER</summary>
-                    <p>Vi anonymiserer data rett etter kampanjen. Ta kontakt med audun@su.no for innsyn.</p>
-                </details>
-            </div>
-        </aside>
-    </main>
-		</section>
+            <aside class="right-col">
+                <div class="form-card">
+                    <h2>Signer</h2>
+                    <form action="/sign" method="POST">
+                        {{if .Error}}<p style="color:var(--accent); font-weight:bold;">{{.Error}}</p>{{end}}
+                        <label for="name">Navn</label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="email">Epost</label>
+                        <input type="email" id="email" name="email">
+                        <button type="submit">SIGNER NÅ</button>
+                    </form>
+                    <details class="form-details">
+                        <summary>PERSONOPPLYSNINGER</summary>
+                        <p>Vi anonymiserer data rett etter kampanjen. Ta kontakt med audun@su.no for innsyn.</p>
+                    </details>
+                </div>
+            </aside>
+        </main>
+    </section>
 
     <section class="section-about">
         <div class="container">
