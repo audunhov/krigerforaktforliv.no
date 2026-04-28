@@ -20,7 +20,7 @@ func main() {
 	}
 
 	// 2. Setup DB
-	store, err := db.NewStore("petition.db")
+	store, err := db.NewStore("/data/petition.db")
 	if err != nil {
 		log.Fatal(err)
 	}
