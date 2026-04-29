@@ -11,6 +11,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /krigerforaktforliv
 FROM gcr.io/distroless/base-debian11 AS build-release-stage
 WORKDIR /
 
+ENV DB_PATH=/data/petition.db
+
 COPY --from=build-stage --chown=65532:65532 /data /data
 COPY --from=build-stage /krigerforaktforliv /krigerforaktforliv
 

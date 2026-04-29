@@ -6,6 +6,7 @@ import (
 	"krigerforaktforliv.no/db"
 	"krigerforaktforliv.no/handlers"
 	"log"
+	"os"
 	"net/http"
 )
 
@@ -13,22 +14,23 @@ import (
 var templateFS embed.FS
 
 func main() {
-	// 1. Load embedded templates
 	tmpl, err := template.ParseFS(templateFS, "pages/*.html")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// 2. Setup DB
-	store, err := db.NewStore("/data/petition.db")
+	dbPath := os.Getenv("DB_PATH")
+	if dbPath == "" {
+		dbPath = "petition.db"
+	}
+
+	store, err := db.NewStore(dbPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// 3. Initialize Handlers with dependencies
 	h := handlers.NewHandler(store, tmpl)
 
-	// 4. Setup Routes
 	http.HandleFunc("/", h.IndexHandler)
 	http.HandleFunc("/sign", h.SignHandler)
 
