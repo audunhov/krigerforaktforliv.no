@@ -7,11 +7,15 @@ import (
 	"krigerforaktforliv.no/handlers"
 	"log"
 	"os"
+	"io/fs"
 	"net/http"
 )
 
 //go:embed pages/*.html
 var templateFS embed.FS
+
+//go:embed static/*
+var staticFS embed.FS
 
 func main() {
 	tmpl, err := template.ParseFS(templateFS, "pages/*.html")
@@ -29,10 +33,15 @@ func main() {
 		log.Fatal(err)
 	}
 
+
 	h := handlers.NewHandler(store, tmpl)
 
 	http.HandleFunc("/", h.IndexHandler)
 	http.HandleFunc("/sign", h.SignHandler)
+
+	assetsFS, _ := fs.Sub(staticFS, "static")
+	fileServer := http.FileServer(http.FS(assetsFS))
+	http.Handle("/assets/", http.StripPrefix("/assets/", fileServer))
 
 	log.Println("Server running on :8080")
 	http.ListenAndServe(":8080", nil)

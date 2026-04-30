@@ -50,7 +50,7 @@
         text-align: center; 
         border-bottom: 8px solid var(--accent);
     }
-    .hero h1 { font-size: 4rem; margin-bottom: 1rem; letter-spacing: -2px; }
+    .hero h1 { font-size: 5rem; margin-bottom: 1rem; }
     .hero p { font-size: 1.5rem; text-transform: none; }
     
     .counter { 
@@ -66,9 +66,9 @@
     .main-section {
         position: relative;
         background-image: linear-gradient(
-					rgba(253, 251, 247, 0.5), 
-					rgba(253, 251, 247, 0.5)
-				), url("https://su.no/wp-content/uploads/2023/06/20230501132527_2Y5A5451-2048x1365.jpg");
+					rgba(253, 251, 247, 0), 
+					rgba(253, 251, 247, 0)
+				), url("https://images.pexels.com/photos/18713933/pexels-photo-18713933.jpeg");
         background-size: cover;
         background-position: center;
         padding: 3rem 0;
@@ -126,8 +126,6 @@
     button:hover { 
         background-color: var(--black); 
         color: var(--white);
-        transform: translate(2px, 2px);
-        box-shadow: 4px 4px 0px var(--black);
     }
 
     /* Footer/About */
@@ -139,6 +137,63 @@
         font-family: var(--font-body); 
     }
     .form-details { margin-top: 2rem; font-size: 0.8rem; }
+
+		/* Logo Grid Styling */
+    .logo-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin-top: 2rem;
+    }
+
+    .logo-grid li {
+        display: flex;
+        width: 160px;
+    }
+
+    .logo-grid a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        transition: transform 0.2s ease;
+    }
+
+    .logo-grid img {
+        max-width: 100%;
+        height: 60px;
+        object-fit: contain;
+        margin-bottom: 1rem;
+        /* Start Grayscale */
+        filter: grayscale(1) opacity(0.7); 
+        transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    .logo-name {
+        font-weight: 900;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        text-align: center;
+        transition: color 0.3s ease;
+    }
+
+    /* Group Hover Effect */
+    .logo-grid a:hover {
+        transform: translateY(-5px);
+    }
+
+    .logo-grid a:hover img {
+        filter: grayscale(0) opacity(1);
+    }
+
+    .logo-grid a:hover .logo-name {
+        color: var(--accent);
+    }
 
     /* Mobile */
     @media (max-width: 768px) {
@@ -194,17 +249,46 @@
         </main>
     </section>
 
-    <section class="section-about">
+<section class="section-about">
         <div class="container">
-            <h2>Hvem er vi?</h2>
-            <ul style="list-style: square; font-size: 1.2rem;">
-                <li>Sosialistisk Ungdom</li>
-                <li>Rød Ungdom</li>
-                <li>Changemaker</li>
-                <li>Solidaritetsungdommen</li>
+            <h2>Hvem står bak?</h2>
+            <ul class="logo-grid">
+                <!-- Organisation 1 -->
+                <li>
+                    <a href="https://su.no" target="_blank" rel="noopener">
+                        <img src="/assets/su.svg" alt="Sosialistisk Ungdom">
+                        <span class="logo-name">Sosialistisk Ungdom</span>
+                    </a>
+                </li>
+
+                <!-- Organisation 2 -->
+                <li>
+                    <a href="https://sosialisme.no" target="_blank" rel="noopener">
+                        <img src="/assets/ru.svg" alt="Rød Ungdom">
+                        <span class="logo-name">Rød Ungdom</span>
+                    </a>
+                </li>
+
+                <!-- Organisation 3 -->
+                <li>
+                    <a href="https://changemaker.no" target="_blank" rel="noopener">
+                        <img src="/assets/changemaker.png" alt="Changemaker">
+                        <span class="logo-name">Changemaker</span>
+                    </a>
+                </li>
+
+                <!-- Organisation 4 -->
+                <li>
+                    <a href="https://npaid.org/solidaritetsungdom" target="_blank" rel="noopener">
+                        <img src="/assets/solung.png" alt="Solidaritetsungdommen">
+                        <span class="logo-name">Solidaritetsungdommen</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </section>
+
+
 
     <footer>
         <div class="container">KRIG ER FORAKT FOR LIV</div>
