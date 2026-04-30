@@ -33,11 +33,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-
 	h := handlers.NewHandler(store, tmpl)
 
 	http.HandleFunc("/", h.IndexHandler)
-	http.HandleFunc("/sign", h.SignHandler)
+	http.HandleFunc("POST /sign", h.SignHandler)
 
 	assetsFS, _ := fs.Sub(staticFS, "static")
 	fileServer := http.FileServer(http.FS(assetsFS))

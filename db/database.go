@@ -23,7 +23,7 @@ return nil, err
     return &Store{DB: db}, err
 }
 
-func (s *Store) AddSignature(ctx context.Context, name, email string) error {
+func (s *Store) AddSignature(ctx context.Context, name string, email *string) error {
     _, err := s.DB.ExecContext(ctx, "INSERT INTO signatures (name, email) VALUES (?, ?)", name, email)
     if err != nil {
       return err

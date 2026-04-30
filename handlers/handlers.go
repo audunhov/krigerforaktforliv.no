@@ -3,6 +3,8 @@ package handlers
 import (
 	"html/template"
 	"net/http"
+	"strings"
+
 	"krigerforaktforliv.no/db"
 )
 
@@ -32,7 +34,10 @@ func (h *Handler) IndexHandler(w http.ResponseWriter, r *http.Request) {
 
 		errorMessage := ""
     if r.URL.Query().Get("error") == "duplicate" {
-        errorMessage = "This email has already signed the petition."
+        errorMessage = "Denne eposten har allerede vært brukt"
+    }
+    if r.URL.Query().Get("error") == "invalid" {
+        errorMessage = "Skjemaet er ugyldig"
     }
 
     data := PageData{
@@ -46,26 +51,37 @@ func (h *Handler) IndexHandler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
+
 func (h *Handler) SignHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-		return
-	}
+    if err := r.ParseForm(); err != nil {
+        http.Redirect(w, r, "/?error=invalid", http.StatusSeeOther)
+        return
+    }
 
-	err := r.ParseForm()
-	if err != nil {
-		http.Error(w, "Error parsing form", http.StatusBadRequest)
-		return
-	}
+    // Honeypot check
+    if r.FormValue("zip_code") != "" {
+        http.Redirect(w, r, "/", http.StatusSeeOther)
+        return
+    }
 
-	name := r.FormValue("name")
-	email := r.FormValue("email")
+    name := strings.TrimSpace(r.FormValue("name"))
+		var email *string
 
-	err = h.store.AddSignature(r.Context(),	name, email)
-	if err != nil {
-		http.Redirect(w, r, "/?error=duplicate", http.StatusSeeOther)
-    return
-	}
+		formEmail := strings.TrimSpace(r.FormValue("email"))
+		if formEmail != "" {
+			email = &formEmail
+		}
 
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+    if name == "" {
+        http.Redirect(w, r, "/?error=invalid", http.StatusSeeOther)
+        return
+    }
+
+    err := h.store.AddSignature(r.Context(), name, email)
+    if err != nil {
+        http.Redirect(w, r, "/?error=duplicate", http.StatusSeeOther)
+        return
+    }
+
+    http.Redirect(w, r, "/", http.StatusSeeOther)
 }
